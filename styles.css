@@ -1,0 +1,17 @@
+.box {
+  width: 300px;
+  height: 100px;
+  background-color: rgb(0, 0, 0);
+  text-align: center;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.box:hover {
+  background-color: rgb(0, 102, 255);
+}
+
+p.text{
+  color: white;
+  padding: 40px;
+}
