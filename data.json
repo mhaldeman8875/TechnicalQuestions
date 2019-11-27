@@ -1,0 +1,7 @@
+{
+  "data": [
+    {"id": "0", "name": "Alice", "age": 25, "email": "alicedoe@gmail.com"},
+    {"id": "1", "name": "Bob", "age": 37, "email": "BobSaget@gmail.com"},
+    {"id": "2", "name": "Carol", "age": 30, "email": "Carol@yahoo.com"}
+  ]
+}
