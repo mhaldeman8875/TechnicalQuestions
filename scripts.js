@@ -38,12 +38,13 @@ function handleUserUpdateRequest(userInfo) {
   }
 }
 
-function updateUserInfo(userId, ageInput, emailInput, domain) {
+function updateUserInfo(userId, ageInput, emailInput) {
+// function updateUserInfo(userId, {...updateProperties}) {
     for (var i=0; i<data.length; i++) {
       if (userId == 1) {
         data[1].age = ageInput;
         data[1].email = emailInput;
-        data[1].domain = domain;
+        // data[1].push({...updateProperties});
         break;
       }
     }
@@ -78,14 +79,18 @@ $(document).ready(function(){
     var emailInput = $("#email").val();
     //extract the domain from the new email and assign to new variable
     var domain = ((data[1].email.split("@"))[1]).toUpperCase();
+    var email = emailInput.split("@")[0];
+    emailInput = email + "@" + domain;
     //create new json object using variables
-    var userInfo = {"age": ageInput, "email": emailInput, "domain": domain}
+    var userInfo = {"age": ageInput, "email": emailInput}
     //call the function and pass in userInfo
     handleUserUpdateRequest(userInfo);
 
     var userId = data[1].id;
+    // var updateProperties = {...userInfo, "domain": domain}
+    updateUserInfo(userId, ageInput, emailInput);
+    // updateUserInfo(userId, updateProperties);
 
-    updateUserInfo(userId, ageInput, domain, emailInput);
 
     console.log(data)
 
@@ -101,11 +106,9 @@ $(document).ready(function(){
     handleUserAddRequest(newUserInfo);
 
     const callback = () => console.log("Hello World");
+    
     await addUserToDatabase(name, age, email, callback);
 
     event.preventDefault();
   });
 })
-
-
-
