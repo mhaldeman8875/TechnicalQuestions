@@ -63,10 +63,10 @@ function handleUserAddRequest(newUserInfo) {
 }
 
 // needs to be async
-function addUserToDatabase(name, age, email) {
+async function addUserToDatabase(name, age, email, callback) {
   data.push({"name": name, "age": age, "email": email});
   console.log(data)
-
+  callback();
 }
 
 
@@ -84,18 +84,15 @@ $(document).ready(function(){
     handleUserUpdateRequest(userInfo);
 
     var userId = data[1].id;
-    // const newProperties = {
-    //   ageInput: 1,
-    //   emailInput: "a",
-    //   domain: "a.com"
-    // }
-    updateUserInfo(userId, ageInput, emailInput, domain);
+
+    updateUserInfo(userId, ageInput, domain, emailInput);
+
     console.log(data)
 
     event.preventDefault();
   });
 
-  $("#addUser").submit(function(event){
+  $("#addUser").submit(async function(event){
     var name = $("#name").val();
     var age = parseInt($("#age2").val());
     var email = $("#email2").val();
@@ -103,7 +100,8 @@ $(document).ready(function(){
     var newUserInfo = {"name": name, "age": age, "email": email}
     handleUserAddRequest(newUserInfo);
 
-    addUserToDatabase(name, age, email);
+    const callback = () => console.log("Hello World");
+    await addUserToDatabase(name, age, email, callback);
 
     event.preventDefault();
   });
